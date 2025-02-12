@@ -5,60 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TPS Report - The Sellouts DMV</title>
     <style>
-        body { font-family: 'Courier New', Courier, monospace; background: #222; color: #ddd; text-align: center; }
-        table { width: 80%; margin: 20px auto; border-collapse: collapse; background: #333; }
-        th, td { border: 1px solid #bbb; padding: 10px; color: #ddd; }
-        th { background: #444; }
-        .highlight { background: #555; font-weight: bold; color: #fff; }
-        .button { background: #008CBA; color: white; padding: 10px; text-decoration: none; display: inline-block; margin: 10px; }
-        .footer { margin-top: 20px; font-size: 12px; color: #888; }
-        .warning { color: orange; font-size: 18px; margin-top: 10px; }
+        body {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #C0C0C0; /* Windows 95 Gray */
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border: 3px solid #333;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+        h1 {
+            background: navy;
+            color: white;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #ddd;
+        }
+        .button {
+            background: #008CBA;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .game-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: black;
+            color: white;
+        }
+        .sellout-box {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        #maze-container {
+            display: none;
+            padding: 20px;
+            background: black;
+            color: white;
+        }
+        .maze-cell {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            border: 1px solid white;
+            text-align: center;
+            line-height: 40px;
+        }
+        .player {
+            background: limegreen;
+            color: black;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+
+<div class="container">
     <h1>📊 Talent Performance Summary (TPS) Report</h1>
-    <h3>The Sellouts DMV - Official Cover Band Metrics</h3>
-    <p class="warning">⚠️ WARNING: This page is a work in progress. Expect frequent updates! ⚠️</p>
+    <p>Official Corporate Metrics for The Sellouts DMV</p>
+    <button class="button" onclick="showReport()">View Report</button>
 
-    <table>
-        <tr>
-            <th>Metric</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>🎤 Most Requested Song</td>
-            <td>"Livin’ on a Prayer"</td>
-        </tr>
-        <tr>
-            <td>🎟 Total Free Drinks Earned</td>
-            <td>1,432</td>
-        </tr>
-        <tr class="highlight">
-            <td>💰 Total Exposure Bucks Collected</td>
-            <td>Infinite</td>
-        </tr>
-        <tr>
-            <td>📈 Sellout Level</td>
-            <td>99%</td>
-        </tr>
-        <tr>
-            <td>📅 Next Gig</td>
-            <td>[Venue Name] - [Date]</td>
-        </tr>
-    </table>
+    <div id="report" style="display:none;">
+        <table>
+            <tr><th>Metric</th><th>Status</th></tr>
+            <tr><td>Next Gig</td><td>[Venue Name] - [Date]</td></tr>
+            <tr><td>Most Requested Song</td><td>"We swear it's NOT ‘Wonderwall’"</td></tr>
+            <tr><td>Total Free Drinks Earned</td><td>1,432</td></tr>
+            <tr><td>Sellout Level</td><td><b>99%</b></td></tr>
+            <tr><td>Total Exposure Bucks</td><td>Infinite</td></tr>
+        </table>
 
-    <h3>💾 Download This Report</h3>
-    <p><a href="#" download="TPS_Report_Sellouts.html" class="button">Download HTML Version</a></p>
+        <h3>🎶 Soundtrack Teaser:</h3>
+        <p>If you like these songs, you might like our setlist...</p>
+        <ul>
+            <li><a href="https://www.youtube.com/watch?v=vcZn8usf7Yo" target="_blank">🔥 80s Rock Energy</a></li>
+            <li><a href="https://www.youtube.com/watch?v=H7Zy-7O_UQY" target="_blank">🤘 90s Alternative Anthem</a></li>
+            <li><a href="https://www.youtube.com/watch?v=RdSmokR0Enk" target="_blank">🎤 2000s Pop-Punk Essential</a></li>
+        </ul>
 
-    <h3>📡 Connect with Us</h3>
-    <p>
-        <a href="https://instagram.com/SelloutsDMV" class="button">Instagram</a>
-        <a href="https://youtube.com/SelloutsDMV" class="button">YouTube</a>
-        <a href="mailto:hr@SelloutsDMV.com" class="button">Email Us</a>
-    </p>
+        <h3>🔄 Hidden Games:</h3>
+        <button class="button" onclick="startSelloutGame()">Dodge the Corporate Sellout</button>
+        <button class="button" onclick="startMazeGame()">Find Your Next Gig (90s Maze)</button>
+    </div>
+</div>
 
-    <h4 style="color: red;">🚨 ERROR 404: ARTISTIC INTEGRITY NOT FOUND 🚨</h4>
+<!-- Dodge the Corporate Sellout Game -->
+<div id="sellout-game" class="game-container">
+    <h2>Dodge the Corporate Sellout!</h2>
+    <p>Tap the "Sellout Contracts" before they reach the bottom.</p>
+    <div id="sellout-box" class="sellout-box">💰</div>
+</div>
 
-    <p class="footer">*This TPS report has been auto-generated by corporate. Please do not respond.*</p>
+<!-- 90s Maze Game -->
+<div id="maze-container">
+    <h2>Find Your Next Gig</h2>
+    <p>Navigate the Windows 95 folder maze.</p>
+    <div id="maze">
+        <div class="maze-cell player">🟢</div>
+        <div class="maze-cell">📂</div>
+        <div class="maze-cell">📂</div>
+        <div class="maze-cell">📂</div>
+        <div class="maze-cell">🏆</div>
+    </div>
+</div>
+
+<script>
+function showReport() {
+    document.getElementById("report").style.display = "block";
+}
+
+function startSelloutGame() {
+    document.getElementById("sellout-game").style.display = "block";
+    let box = document.getElementById("sellout-box");
+    let gameInterval = setInterval(() => {
+        let x = Math.random() * window.innerWidth - 50;
+        let y = Math.random() * window.innerHeight - 50;
+        box.style.left = x + "px";
+        box.style.top = y + "px";
+    }, 800);
+
+    box.onclick = () => {
+        alert("You avoided selling out... this time.");
+        clearInterval(gameInterval);
+        document.getElementById("sellout-game").style.display = "none";
+    };
+}
+
+function startMazeGame() {
+    document.getElementById("maze-container").style.display = "block";
+    alert("Swipe or use arrows to navigate.");
+}
+</script>
+
 </body>
 </html>
