@@ -1,45 +1,184 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TPS Report - The Sellouts DMV</title>
-<link rel='stylesheet' type='text/css' href='style.css'>
-<link rel="icon" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPS Report - The Sellouts DMV</title>
+    <style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #C0C0C0; /* Windows 95 Gray */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        .background {
+            background-image: url('https://drive.google.com/uc?export=view&id=1B6NtV_azuS6pG9Cfcfawf693pV75jaoc');
+            background-size: contain; /* Proportionally fit the image to the width */
+            background-repeat: no-repeat; /* Prevent repeating the image */
+            background-position: center top; /* Position the image at the top center */
+            width: 100%;
+            height: 100vh; /* Height of the viewport */
+            position: fixed; /* Ensure it stays in place */
+            z-index: -1; /* Send it to the background */
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border: 3px solid #333;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+            position: relative; /* Position relative for z-index to take effect */
+            z-index: 1; /* Ensure it's above the background */
+            background-color: white; /* Ensure the container has a white background */
+        }
+        h1 {
+            background: navy;
+            color: white;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #ddd;
+        }
+        .button {
+            background: #008CBA;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .game-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: black;
+            color: white;
+        }
+        .sellout-box {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        #maze-container {
+            display: none;
+            padding: 20px;
+            background: black;
+            color: white;
+        }
+        .maze-cell {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            border: 1px solid white;
+            text-align: center;
+            line-height: 40px;
+        }
+        .player {
+            background: limegreen;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<header>
-<nav>
-<a href="index.html" class="active-page">Home</a> |
-<a href="blog/">Blog</a> |
-<a href="projects/">Projects</a> |
-<a href="about/">About</a>
-</nav>
-</header>
-<h1>TPS Report</h1>
-<p>Welcome to the official performance metrics page. Here, you can find key insights, statistics, and updates on:</p>
-<dl class="multicol">
-<dt><a href="https://youtube.com/@selloutsdmv">YouTube Channel:</a></dt>
-<dd>Live performances and behind-the-scenes content</dd>
-<dt><a href="projects/gigs/">Upcoming Gigs:</a></dt>
-<dd>Dates, venues, and ticket info</dd>
-<dt><a href="projects/merch/">Merchandise:</a></dt>
-<dd>Limited edition band merch</dd>
-<dt><a href="projects/statistics/">Performance Statistics:</a></dt>
-<dd>Fan engagement, streaming analytics, and more</dd>
-</dl>
-<h2>Recent Updates</h2>
-<ul>
-<li>2024/11/01 – Updated website</li>
-<li>2024/10/24 – Released new single <a href="https://youtu.be/example">"Breaking the Mold"</a></li>
-<li>2024/10/23 – Announced fall tour dates</li>
-<li>2024/10/10 – Launched new merch line</li>
-</ul>
-<footer><pre>
-Contact: <a id="email" href="mailto:contact@selloutsdmv.com">E-mail</a> | <a rel="me" href="https://fedi.selloutsdmv.com">Fedi</a> | <a rel="me" href="https://matrix.to/#/@sellouts:matrix.selloutsdmv.com">Matrix</a> | <a rel="me" href="https://nostr.selloutsdmv.com">Nostr</a>
-More:    <a id="email" href="donate/">Donate</a> | <a href="rss.xml">RSS</a> | <a href="https://github.com/selloutsdmv">Github</a> | <a href="selloutsgpg.asc">PGP</a>
 
-<a href="https://selloutsdmv.com/"><img src="logo.svg"></a> The Sellouts DMV &copy; 2024 — <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a>
-</pre></footer>
+<div class="background"></div>
+
+<div class="container">
+    <h1>📊 Talent Performance Summary (TPS) Report</h1>
+    <p>Official Corporate Metrics for The Sellouts DMV</p>
+    <button class="button" onclick="showReport()">View Report</button>
+
+    <div id="report" style="display:none;">
+        <table>
+            <tr><th>Metric</th><th>Status</th></tr>
+            <tr><td>Next Gig</td><td>[Venue Name] - [Date]</td></tr>
+            <tr><td>Most Requested Song</td><td>"We swear it's NOT ‘Wonderwall’"</td></tr>
+            <tr><td>Total Free Drinks Earned</td><td>1,432</td></tr>
+            <tr><td>Sellout Level</td><td><b>99%</b></td></tr>
+            <tr><td>Total Exposure Bucks</td><td>Infinite</td></tr>
+        </table>
+
+        <h3>🎶 Soundtrack Teaser:</h3>
+        <p>If you like these songs, you might like our setlist...</p>
+        <ul>
+            <li><a href="https://www.youtube.com/watch?v=vcZn8usf7Yo" target="_blank">🔥 80s Rock Energy</a></li>
+            <li><a href="https://www.youtube.com/watch?v=H7Zy-7O_UQY" target="_blank">🤘 90s Alternative Anthem</a></li>
+            <li><a href="https://www.youtube.com/watch?v=RdSmokR0Enk" target="_blank">🎤 2000s Pop-Punk Essential</a></li>
+        </ul>
+
+        <h3>🔄 Hidden Games:</h3>
+        <button class="button" onclick="startSelloutGame()">Dodge the Corporate Sellout</button>
+        <button class="button" onclick="startMazeGame()">Find Your Next Gig (90s Maze)</button>
+    </div>
+</div>
+
+<!-- Dodge the Corporate Sellout Game -->
+<div id="sellout-game" class="game-container">
+    <h2>Dodge the Corporate Sellout!</h2>
+    <p>Tap the "Sellout Contracts" before they reach the bottom.</p>
+    <div id="sellout-box" class="sellout-box">💰</div>
+</div>
+
+<!-- 90s Maze Game -->
+<div id="maze-container">
+    <h2>Find Your Next Gig</h2>
+    <p>Navigate the Windows 95 folder maze.</p>
+    <div class="maze-cell player">🟢</div>
+    <div class="maze-cell">📂</div>
+    <div class="maze-cell">📂</div>
+    <div class="maze-cell">📂</div>
+    <div class="maze-cell">🏆</div>
+</div>
+
+<script>
+function showReport() {
+    document.getElementById("report").style.display = "block";
+}
+
+function startSelloutGame() {
+    document.getElementById("sellout-game").style.display = "block";
+    let box = document.getElementById("sellout-box");
+    let gameInterval = setInterval(() => {
+        let x = Math.random() * window.innerWidth - 50;
+        let y = Math.random() * window.innerHeight - 50;
+        box.style.left = x + "px";
+        box.style.top = y + "px";
+    }, 800);
+
+    box.onclick = () => {
+        alert("You avoided selling out... this time.");
+        clearInterval(gameInterval);
+        document.getElementById("sellout-game").style.display = "none";
+    };
+}
+
+function startMazeGame() {
+    document.getElementById("maze-container").style.display = "block";
+    alert("Swipe or use arrows to navigate.");
+}
+</script>
+
 </body>
 </html>
