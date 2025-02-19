@@ -83,9 +83,20 @@
             color: black;
             font-weight: bold;
         }
+        /* Add new background style */
+        .background {
+            background-image: url('https://drive.google.com/uc?export=view&id=1B6NtV_azuS6pG9Cfcfawf693pV75jaoc');
+            background-size: contain; /* Proportionally fit the image to the width */
+            background-repeat: no-repeat; /* Prevent repeating the image */
+            background-position: center top; /* Position the image at the top center */
+            width: 100%;
+            height: 100vh; /* Height of the viewport */
+        }
     </style>
 </head>
 <body>
+
+<div class="background"></div>
 
 <div class="container">
     <h1>📊 Talent Performance Summary (TPS) Report</h1>
@@ -127,13 +138,11 @@
 <div id="maze-container">
     <h2>Find Your Next Gig</h2>
     <p>Navigate the Windows 95 folder maze.</p>
-    <div id="maze">
-        <div class="maze-cell player">🟢</div>
-        <div class="maze-cell">📂</div>
-        <div class="maze-cell">📂</div>
-        <div class="maze-cell">📂</div>
-        <div class="maze-cell">🏆</div>
-    </div>
+    <div class="maze-cell player">🟢</div>
+    <div class="maze-cell">📂</div>
+    <div class="maze-cell">📂</div>
+    <div class="maze-cell">📂</div>
+    <div class="maze-cell">🏆</div>
 </div>
 
 <script>
